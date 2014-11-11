@@ -40,8 +40,8 @@ function my_scripts_method() {
         true
     );
     wp_enqueue_script(
-        'main',
-        get_template_directory_uri() . '/js/main.js',
+        'app',
+        get_template_directory_uri() . '/js/app.js',
         array( 'modernizr' ),
         null,
         true
