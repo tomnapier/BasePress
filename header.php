@@ -2,7 +2,11 @@
 /**
  * The Header for our theme.
  *
- * Displays all of the <head> section and everything up till <div id="content"> */ ?>
+ * Displays all of the <head> section and everything up till <div id="content"> */ 
+
+global $shortname;
+
+?>
 
 <!DOCTYPE html>
 <!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
@@ -11,17 +15,21 @@
 <!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
     <head>
 
-        <!-- Basic Page Needs
+        <!-- Meta
         ================================================== -->
         <meta charset="<?php echo get_option('blog_charset'); ?>">
-        <title><?php
+
+        <title>
+        <?php
                 if ( is_single() ) { bloginfo('name'); print ' | '; single_post_title(); }
                 elseif ( is_home() || is_front_page() ) { bloginfo('name'); print ' | '; bloginfo('description'); get_page_number(); }
                 elseif ( is_page() ) { bloginfo('name'); print ' | '; single_post_title(''); }
                 elseif ( is_search() ) { bloginfo('name'); print ' | Search results for ' . wp_specialchars($s); get_page_number(); }
                 elseif ( is_404() ) { bloginfo('name'); print ' | Not Found'; }
                 else { bloginfo('name'); print ' | '; wp_title('|'); get_page_number(); }
-        ?></title>
+        ?>
+        </title>
+
         <meta name="description" content="<?php bloginfo('description'); ?>">
         <meta name="author" content="<?php $user = get_user_by( "email", get_bloginfo('admin_email') ); echo $user->display_name ?>">
 
@@ -36,6 +44,7 @@
         <link rel='stylesheet' type='text/css' href="<?php bloginfo('url'); ?>/?theme_custom=css">
     
         <?php if ( get_option('iw_custom_css') != "") { ?>
+        
         <!-- Custom CSS
         ================================================== -->
         <style type="text/css"><?php echo get_option('iw_custom_css'); ?></style>
@@ -48,10 +57,10 @@
 
         <!-- Favicons
         ================================================== -->
-        <link rel="shortcut icon" href="<?php echo get_option('iw_favicon'); ?>">
-        <link rel="apple-touch-icon" href="<?php echo get_option('iw_icon_56'); ?>">
-        <link rel="apple-touch-icon" sizes="72x72" href="<?php echo get_option('iw_icon_72'); ?>">
-        <link rel="apple-touch-icon" sizes="114x114" href="<?php echo get_option('iw_icon_114'); ?>">
+        <link rel="shortcut icon" href="<?php echo get_option( $shortname . '_favicon'); ?>">
+        <link rel="apple-touch-icon" href="<?php echo get_option( $shortname . '_icon_56'); ?>">
+        <link rel="apple-touch-icon" sizes="72x72" href="<?php echo get_option( $shortname . '_icon_72'); ?>">
+        <link rel="apple-touch-icon" sizes="114x114" href="<?php echo get_option( $shortname . '_icon_114'); ?>">
 
         <!-- WordPress
         ================================================== -->
@@ -78,14 +87,13 @@
                         <?php  wp_nav_menu( array( 'theme_location' => 'main-menu', 'container' => '' ) ); ?>
                     </nav><!-- #site-navigation -->
 
-
-    </header><!-- #masthead -->
+            </header><!-- #masthead -->
 
                 <?php get_template_part( 'slider' ); ?>
 
                 <div class="intro">
-                    <h2><?php echo get_option( 'iw_home_welcome' ); ?></h2>
-                    <p><?php echo get_option( 'iw_home_intro' ); ?></p>
+                    <h2><?php echo get_option( $shortname . '_home_welcome' ); ?></h2>
+                    <p><?php echo get_option( $shortname . '_home_intro' ); ?></p>
                 </div>
 
             <div id="content" class="site-content row">
