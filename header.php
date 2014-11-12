@@ -33,7 +33,7 @@ global $shortname;
         <meta name="description" content="<?php bloginfo('description'); ?>">
         <meta name="author" content="<?php $user = get_user_by( "email", get_bloginfo('admin_email') ); echo $user->display_name ?>">
 
-        <!-- Mobile Specific Metas
+        <!-- Viewport
         ================================================== -->
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -42,18 +42,12 @@ global $shortname;
        
         <link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>">
         <link rel='stylesheet' type='text/css' href="<?php bloginfo('url'); ?>/?theme_custom=css">
-    
-        <?php if ( get_option('iw_custom_css') != "") { ?>
-        
+
         <!-- Custom CSS
         ================================================== -->
-        <style type="text/css"><?php echo get_option('iw_custom_css'); ?></style>
+        <?php if ( get_option('iw_custom_css') != "") { ?>
+        <style type="text/css"><?php echo $shortname . '_custom_css'); ?></style>
         <?php } ?>
-
-        <!--[if lt IE 9]>
-            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-            <link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/css/ie.css">
-        <![endif]-->
 
         <!-- Favicons
         ================================================== -->
@@ -79,21 +73,19 @@ global $shortname;
                         <h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
                     </div>
 
-                    <div id="mobile-menu">
-                        <a href="#site-navigation" class="mobile-btn"><span class="dashicons dashicons-menu"></span></a>
-                    </div>
-
                     <nav id="site-navigation" class="site-navigation main-navigation" role="navigation">
                         <?php  wp_nav_menu( array( 'theme_location' => 'main-menu', 'container' => '' ) ); ?>
                     </nav><!-- #site-navigation -->
 
+                    <div id="mobile-menu">
+                        <a href="#site-navigation" class="mobile-btn"><span class="dashicons dashicons-menu"></span></a>
+                    </div>
+
             </header><!-- #masthead -->
 
-                <?php get_template_part( 'slider' ); ?>
-
-                <div class="intro">
-                    <h2><?php echo get_option( $shortname . '_home_welcome' ); ?></h2>
-                    <p><?php echo get_option( $shortname . '_home_intro' ); ?></p>
-                </div>
+            <div class="intro">
+                <h2><?php echo get_option( $shortname . '_home_welcome' ); ?></h2>
+                <p><?php echo get_option( $shortname . '_home_intro' ); ?></p>
+            </div>
 
             <div id="content" class="site-content row">
