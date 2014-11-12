@@ -6,35 +6,35 @@ function my_scripts_method() {
 
     wp_enqueue_script(
         'modernizr',
-        get_template_directory_uri() . '/js/vendor/modernizr.js',
+        get_template_directory_uri() . '/bower_components/foundation/js/vendor/modernizr.js',
         array(),
         null,
         false
     );
     wp_enqueue_script(
         'jquery',
-        get_template_directory_uri() . '/js/vendor/jquery.js',
+        get_template_directory_uri() . '/bower_components/foundation/js/vendor/jquery.js',
         array( 'modernizr' ),
         null,
         false
     );
     wp_enqueue_script(
         'fastclick',
-        get_template_directory_uri() . '/js/vendor/fastclick.js',
+        get_template_directory_uri() . '/bower_components/foundation/js/vendor/fastclick.js',
         array( 'modernizr' ),
         null,
         false
     );
     wp_enqueue_script(
         'cookies',
-        get_template_directory_uri() . '/js/foundation/jquery.cookie.js',
+        get_template_directory_uri() . '/bower_components/foundation/js/vendor/jquery.cookie.js',
         array( 'modernizr' ),
         null,
         false
     );
     wp_enqueue_script(
         'foundation',
-        get_template_directory_uri() . '/js/foundation.min.js',
+        get_template_directory_uri() . '/bower_components/foundation/js/foundation.min.js',
         array( 'modernizr' ),
         null,
         true
@@ -42,13 +42,6 @@ function my_scripts_method() {
     wp_enqueue_script(
         'app',
         get_template_directory_uri() . '/js/app.js',
-        array( 'modernizr' ),
-        null,
-        true
-    );
-    wp_enqueue_script(
-        'slider',
-        get_template_directory_uri() . '/js/slider.js',
         array( 'modernizr' ),
         null,
         true
