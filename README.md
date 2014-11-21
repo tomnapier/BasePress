@@ -20,7 +20,7 @@ bundle exec compass watch
 
 This will watch for changes to your .scss files and compile them according to the settings found in config.rb.
 
-ONce everything is compiled, upload the style.css file.
+Once everything is compiled, upload the style.css file.
 
 Hit
 ```bash
