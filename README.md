@@ -1,6 +1,4 @@
-# Foundation Compass Template
-
-The easiest way to get started with Foundation + Compass.
+#Installation
 
 ## Requirements
 
@@ -11,14 +9,24 @@ The easiest way to get started with Foundation + Compass.
 
 ## Quickstart
 
-  * [Download this starter compass project and unzip it](https://github.com/zurb/foundation-compass-template/archive/master.zip)
-  * Run `bower install` to install the latest version of Foundation
+  * Clone the repository to a directory with your new project name.
+  * Upload the directory to wp-content/themes.
   
 Then when you're working on your project, just run the following command:
 
 ```bash
 bundle exec compass watch
 ```
+
+This will watch for changes to your .scss files and compile them according to the settings found in config.rb.
+
+ONce everything is compiled, upload the style.css file.
+
+Hit
+```bash
+Control + C
+```
+to stop watching for changes.
 
 ## Upgrading
 
