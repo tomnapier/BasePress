@@ -1,4 +1,4 @@
-Query(document).foundation();
+jQuery(document).foundation();
 
 jQuery(document).ready(function($) {
 
