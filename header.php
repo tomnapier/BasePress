@@ -45,9 +45,7 @@ global $shortname;
 
         <!-- Custom CSS
         ================================================== -->
-        <?php if ( get_option('iw_custom_css') != "") { ?>
-        <style type="text/css"><?php echo $shortname . '_custom_css'); ?></style>
-        <?php } ?>
+
 
         <!-- Favicons
         ================================================== -->
