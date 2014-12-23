@@ -25,8 +25,6 @@ require_once( 'inc/options.php' );
 
 require_once( 'inc/post/page.php' );
 
-
-require_once( 'inc/plugins/about.php' );
 require_once( 'inc/_s/template-tags.php' );
 #######################################################################################
 
