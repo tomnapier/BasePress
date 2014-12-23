@@ -1,0 +1,117 @@
+@function strip-unit($num) {
+  @return $num / ($num * 0 + 1);
+}
+
+@mixin rem($property, $values...) {
+  $max: length($values);
+  $pxValues: '';
+  $remValues: '';
+
+  @for $i from 1 through $max {
+    $value: strip-unit(nth($values, $i));
+    $pxValues: #{$pxValues + $value*16}px;
+
+    @if $i < $max {
+      $pxValues: #{$pxValues + " "};
+    }
+  } 
+
+  @for $i from 1 through $max {
+    $value: strip-unit(nth($values, $i));
+    $remValues: #{$remValues + $value}rem;
+
+    @if $i < $max {
+      $remValues: #{$remValues + " "};
+    }
+  } 
+  
+  #{$property}: $pxValues; 
+  #{$property}: $remValues; 
+}
+
+
+@mixin font-size() {
+
+  @include rem(font-size, 1.2);
+
+      @media #{$medium-up} { 
+
+          @include rem(font-size, 1.4);
+
+      }
+
+      @media #{$large-up} { 
+
+          @include rem(font-size, 1.6);
+
+      }
+
+}
+
+@mixin global-transition($property, $time) {
+
+    -webkit-transition: $property $time ease-in-out ;
+       -moz-transition: $property $time ease-in-out ;
+        -ms-transition: $property $time ease-in-out ;
+            transition: $property $time ease-in-out ;
+
+}
+
+@mixin global-border-radius($radius) {
+
+    -webkit-border-radius: $radius;
+       -moz-border-radius: $radius;
+        -ms-border-radius: $radius;
+            border-radius: $radius;
+
+}
+
+@mixin fontawesome($color,$size, $padding) { 
+
+    color: $color;
+    display:inline-block;
+    font:normal normal normal 14px/1 FontAwesome;
+    font-size:$size;
+    padding: $padding;
+    text-rendering:auto;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+
+}
+
+@mixin global-transform($x, $y) {
+
+    -webkit-transform: translate($x, $y);
+       -moz-transform: translate($x, $y);
+        -ms-transform: translate($x, $y);
+            transform: translate($x, $y);
+
+}
+
+@mixin global-transform3d($x, $y, $z) {
+
+    -webkit-transform: translate3d($x, $y, $z);
+       -moz-transform: translate3d($x, $y, $z);
+        -ms-transform: translate3d($x, $y, $z);
+            transform: translate3d($x, $y, $z);
+
+}
+
+@mixin global-scale3d($x, $y, $z) {
+
+    -webkit-transform: scale3d($x, $y, $z);
+       -moz-transform: scale3d($x, $y, $z);
+        -ms-transform: scale3d($x, $y, $z);
+            transform: scale3d($x, $y, $z);
+
+}
+
+@mixin absolute-centre {
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    @include global-transform(-50%, -50%);
+
+}
