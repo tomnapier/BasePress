@@ -76,14 +76,9 @@ global $shortname;
                     </nav><!-- #site-navigation -->
 
                     <div id="mobile-menu">
-                        <a href="#site-navigation" class="mobile-btn"><span class="dashicons dashicons-menu"></span></a>
+                        <a href="#site-navigation" class="menu-button"><span class="menu-icon"></span></a>
                     </div>
 
             </header><!-- #masthead -->
-
-            <div class="intro">
-                <h2><?php echo get_option( $shortname . '_home_welcome' ); ?></h2>
-                <p><?php echo get_option( $shortname . '_home_intro' ); ?></p>
-            </div>
 
             <div id="content" class="site-content row">

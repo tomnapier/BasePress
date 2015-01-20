@@ -1,8 +1,8 @@
-/* This boilerplate was started by Joe Dunys, and developed further by Tom Napier, for Ink & Water, Sheffield */
+/* This boilerplate was started by Joe Dunys, and developed further by Tom Napier, for Ink & Water LTD, Sheffield */
 /* inkandwater.co.uk */
 /* humanstxt.org */
 
 /* SITE */
-  Standards: HTML5, CSS3
+  Standards: HTML5, CSS3, SASS
   Components: jQuery
   Software: Sublime Text 3, Git
