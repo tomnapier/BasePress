@@ -1,5 +1,15 @@
 <?php 
 
+/**
+ * Plugin Name: Theme Settings Menu
+ * Plugin URI: http://tom-napier.co.uk
+ * Description: A simple theme settings menu to add extra info (such as twitter feeds, phone numbers, etc.)
+ * Version: 1.0
+ * Author: Tom Napier
+ * Author URI: http://tom-napier.co.uk
+ * License: GPL2
+ */
+
 /* ADD THE THEME SETTINGS PAGE
 ================================================================== */
 

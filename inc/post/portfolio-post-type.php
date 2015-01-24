@@ -3,12 +3,12 @@
 /* Register the custom post type
 ================================ */
 
-function custom_post_type() {
+function portfolio_post_type() {
 
     $labels = array(
-        'name'                => _x( 'Post Types', 'Post Type General Name', 'text_domain' ),
-        'singular_name'       => _x( 'Post Type', 'Post Type Singular Name', 'text_domain' ),
-        'menu_name'           => __( 'Post Type', 'text_domain' ),
+        'name'                => _x( 'Projects', 'Post Type General Name', 'text_domain' ),
+        'singular_name'       => _x( 'Project', 'Post Type Singular Name', 'text_domain' ),
+        'menu_name'           => __( 'Portfolio', 'text_domain' ),
         'parent_item_colon'   => __( 'Parent Item:', 'text_domain' ),
         'all_items'           => __( 'All Items', 'text_domain' ),
         'view_item'           => __( 'View Item', 'text_domain' ),
@@ -21,8 +21,8 @@ function custom_post_type() {
         'not_found_in_trash'  => __( 'Not found in Trash', 'text_domain' ),
     );
     $args = array(
-        'label'               => __( 'post_type', 'text_domain' ),
-        'description'         => __( 'Post Type Description', 'text_domain' ),
+        'label'               => __( 'portfolio', 'text_domain' ),
+        'description'         => __( 'Portfolio Description', 'text_domain' ),
         'labels'              => $labels,
         'supports'            => array( 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'comments', 'trackbacks', 'revisions', 'custom-fields', 'page-attributes', 'post-formats', ),
         'taxonomies'          => array( 'category', 'post_tag' ),
@@ -33,30 +33,31 @@ function custom_post_type() {
         'show_in_nav_menus'   => true,
         'show_in_admin_bar'   => true,
         'menu_position'       => 5,
+        'menu_icon'           => 'dashicons-tablet',
         'can_export'          => true,
         'has_archive'         => true,
         'exclude_from_search' => false,
         'publicly_queryable'  => true,
         'capability_type'     => 'page',
     );
-    register_post_type( 'post_type', $args );
+    register_post_type( 'portfolio', $args );
 
 }
 
 // Hook into the 'init' action
-add_action( 'init', 'custom_post_type', 0 );
+add_action( 'init', 'portfolio_post_type', 0 );
 
 
 /* Add custom update messages
 ============================= */
-add_filter( 'post_updated_messages', 'post_type_updated_messages' );
+add_filter( 'post_updated_messages', 'portfolio_updated_messages' );
 
-function post_type_updated_messages( $messages ) {
+function portfolio_updated_messages( $messages ) {
     $post             = get_post();
     $post_type        = get_post_type( $post );
     $post_type_object = get_post_type_object( $post_type );
 
-    $messages['post_type'] = array(
+    $messages['portfolio'] = array(
         0  => '', // Unused. Messages start at index 1.
         1  => __( 'Post Type updated.', 'your-plugin-textdomain' ),
         2  => __( 'Custom field updated.', 'your-plugin-textdomain' ),
@@ -95,15 +96,15 @@ function post_type_updated_messages( $messages ) {
 /* Add custom dashboard columns
 =============================== */
 
-add_filter( 'manage_edit-post_type_columns', 'extra_post_type_columns' );
-add_action( 'manage_post_type_posts_custom_column', 'post_type_column_content', 10, 2 );
+add_filter( 'manage_edit-portfolio_columns', 'extra_portfolio_columns' );
+add_action( 'manage_portfolio_posts_custom_column', 'portfolio_column_content', 10, 2 );
 
-function extra_post_type_columns( $columns ) {
+function extra_portfolio_columns( $columns ) {
 
     $columns = array(
         "cb"                  => "<input type=\"checkbox\" />",
         "title"               => "Title",
-        "post_type_thumbnail" => 'Featured Image',
+        "portfolio_thumbnail" => 'Featured Image',
         "comments"            => '<span title="Comments" class="comment-grey-bubble"></span>',
         "date"                => "Date"
     );
@@ -112,7 +113,7 @@ function extra_post_type_columns( $columns ) {
 
 }
 
-function post_type_column_content( $column ) {
+function portfolio_column_content( $column ) {
     global $post;
     $parent = $post->ID;
 
@@ -121,7 +122,7 @@ function post_type_column_content( $column ) {
 
     switch ($column) {
 
-        case "post_type_thumbnail":
+        case "portfolio_thumbnail":
             $thumb  = '<a href="' . get_bloginfo( 'url' ) . '/wp-admin/post.php?post=' . $post->ID . '&amp;action=edit" title="Edit “' . $post->post_title . '”">';
             $thumb .= (has_post_thumbnail( $post->ID ))? get_the_post_thumbnail( $post->ID, array( 70, 70 ) ) : null;
             $thumb .= '</a>';
@@ -173,15 +174,15 @@ add_action( 'init', 'custom_taxonomy', 0 );
 /* Custom Query
 ================================================= */
 
-function order_post_type( $query ) {
+function order_portfolio( $query ) {
 
-    if ( is_post_type_archive( 'post_type' ) ) {
-        $query->set( 'orderby', 'menu_order' );
-        $query->set( 'order', 'ASC' );
+    if ( is_post_type_archive( 'portfolio' ) ) {
+        // $query->set( 'orderby', 'menu_order' );
+        // $query->set( 'order', 'ASC' );
     }
 
 }
 
-add_action( 'pre_get_posts', 'order_post_type' );
+add_action( 'pre_get_posts', 'order_portfolio' );
 
 ?>

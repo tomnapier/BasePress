@@ -181,8 +181,6 @@ function _s_posted_on() {
         echo '</span>';
     }
 
-    echo $output;
-
 }
 endif;
 
