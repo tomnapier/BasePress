@@ -184,25 +184,7 @@ function create_meta_box( $meta_fields, $post_type, $name ) {
                                         <small>&nbsp;<a href="#" class="custom_clear_image_button">Remove Image</a></small>
                                         <br clear="all" /><span class="description">'.$field['desc'].'</span>';
                     break;
-                    // gallery
-                    case 'gallery':
-                        $post_id = $post->ID;
-                        $loop = gallery_images( $post_id );
-                        $text = ( empty( $loop ) )? 'Add Media' : 'Manage Gallery';
 
-                        $return = '<div id="'.$field['id'].'-gallery">';
-                        $intro    = '<p>';
-                        $intro    .= '<a href="' . get_bloginfo( 'url' ) . '/wp-admin/media-upload.php?post_id=' . $post_id .'&amp;type=image&amp;TB_iframe=1" id="add_media" class="button insert-media add_media" title="' . $text . '"><i class="icon16 icon-media"></i> ' . $text . '</a>';
-                        $intro    .= '</p>';
-                        $return .= $intro;
-
-                        if( empty( $loop ) ) $return .= '<p>No images.</p>';
-
-                        $gallery = gallery_display( $loop, $post_id );
-                        $return .= $gallery;
-                        $return .= "</div>";
-                        echo $return;
-                    break;
                     // repeatable
                     case 'repeatable':
                         echo '<a class="repeatable-add button" href="#">+</a>
@@ -229,92 +211,4 @@ function create_meta_box( $meta_fields, $post_type, $name ) {
     echo '</table>'; // end table
 }
 
-/* Gallery Functions
-========================================*/
-function gallery_display( $loop, $id ) {
-    $gallery = '<ul class="attachments ui-sortable ui-sortable-disabled" id="__attachments-view-' . $id . '">';
-    foreach( $loop as $image ):
-        $thumbnail    = wp_get_attachment_image_src( $image->ID, 'thumbnail' );
-
-        $gallery .= '<li class="attachment save-ready">';
-        $gallery .= '<div class="attachment-preview type-image">';
-        $gallery .= '<div class="thumbnail"><div class="centered">';
-        $gallery .= '<img src="' . $thumbnail[0] . '" alt="' . $image->post_title . '" rel="' . $image->ID . '" title="' . $image->post_content . '" draggable="false">';
-        $gallery .= '</div></div>';
-        $gallery .= '</div>';
-        $gallery .= '</li>';
-
-    endforeach;
-
-    $gallery .= '</ul>';
-    $gallery .= '<style>#__attachments-view-' . $id . ' { margin-top: 20px; } #__attachments-view-' . $id . ' .attachment-preview, #__attachments-view-' . $id . ' .attachment-preview .thumbnail { cursor: default; width: 120px; height: 120px; }</style>';
-
-    return $gallery;
-}
-
-function gallery_images( $post_id ) {
-    $args = array(
-        'post_type'         => 'attachment',
-        'post_status'       => 'inherit',
-        'post_parent'       => $post_id,
-        'post_mime_type'    => 'image',
-        'posts_per_page'    => -1,
-        'order'             => 'ASC',
-        'orderby'           => 'menu_order',
-    );
-    $images = get_posts( $args );
-    return $images;
-}
-
-/* Screen Help
-========================================*/
-add_action( 'contextual_help', 'wptuts_screen_help', 10, 3 );
-function wptuts_screen_help( $contextual_help, $screen_id, $screen ) {
-
-    // The add_help_tab function for screen was introduced in WordPress 3.3.
-    if ( ! method_exists( $screen, 'add_help_tab' ) )
-        return $contextual_help;
-
-    global $hook_suffix;
-
-    // List screen properties
-    $variables = '<ul style="width:50%;float:left;"> <strong>Screen variables </strong>'
-        . sprintf( '<li> Screen id : %s</li>', $screen_id )
-        . sprintf( '<li> Screen base : %s</li>', $screen->base )
-        . sprintf( '<li>Parent base : %s</li>', $screen->parent_base )
-        . sprintf( '<li> Parent file : %s</li>', $screen->parent_file )
-        . sprintf( '<li> Hook suffix : %s</li>', $hook_suffix )
-        . '</ul>';
-
-    // Append global $hook_suffix to the hook stems
-    $hooks = array(
-        "load-$hook_suffix",
-        "admin_print_styles-$hook_suffix",
-        "admin_print_scripts-$hook_suffix",
-        "admin_head-$hook_suffix",
-        "admin_footer-$hook_suffix"
-    );
-
-    // If add_meta_boxes or add_meta_boxes_{screen_id} is used, list these too
-    if ( did_action( 'add_meta_boxes_' . $screen_id ) )
-        $hooks[] = 'add_meta_boxes_' . $screen_id;
-
-    if ( did_action( 'add_meta_boxes' ) )
-        $hooks[] = 'add_meta_boxes';
-
-    // Get List HTML for the hooks
-    $hooks = '<ul style="width:50%;float:left;"> <strong>Hooks </strong> <li>' . implode( '</li><li>', $hooks ) . '</li></ul>';
-
-    // Combine $variables list with $hooks list.
-    $help_content = $variables . $hooks;
-
-    // Add help panel
-    $screen->add_help_tab( array(
-        'id'     => 'wptuts-screen-help',
-        'title' => 'Screen Information',
-        'content' => $help_content,
-    ));
-
-    return $contextual_help;
-}
 ?>
