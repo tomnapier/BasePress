@@ -1,0 +1,5 @@
+/* Theme Settings Page CSS */
+
+.section.panel textarea { width:70%;height:10em; }
+.section.panel input[type="text"], select { width:70%; }
+.section.panel .description { float: left; padding: 0.2em; }
