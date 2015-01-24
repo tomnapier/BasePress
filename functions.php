@@ -21,7 +21,7 @@ require_once( 'inc/functions/thumbs.php' );
 require_once( 'inc/functions/tinymce.php' );
 require_once( 'inc/functions/video.php' );
 
-require_once( 'inc/options.php' );
+require_once( 'theme-options/theme-options.php' );
 
 require_once( 'inc/post/page.php' );
 
