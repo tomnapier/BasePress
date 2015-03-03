@@ -3,19 +3,19 @@
  * CMB2 Theme Options
  * @version 0.1.0
  */
-class myprefix_Admin {
+class basepress_Admin {
 
   /**
    * Option key, and option page slug
    * @var string
    */
-  private $key = 'myprefix_options';
+  private $key = 'basepress_options';
 
   /**
    * Options page metabox id
    * @var string
    */
-  private $metabox_id = 'myprefix_option_metabox';
+  private $metabox_id = 'basepress_option_metabox';
 
   /**
    * Array of metaboxes/fields
@@ -41,7 +41,7 @@ class myprefix_Admin {
    */
   public function __construct() {
     // Set our title
-    $this->title = __( 'Site Options', 'myprefix' );
+    $this->title = __( 'Site Options', 'basepress' );
   }
 
   /**
@@ -102,23 +102,23 @@ class myprefix_Admin {
       ),
     ) );
 
-    // Set our CMB2 fields
+        // Set our CMB2 fields
 
-    $cmb->add_field( array(
-      'name' => __( 'Test Text', 'myprefix' ),
-      'desc' => __( 'field description (optional)', 'myprefix' ),
-      'id'   => 'test_text',
-      'type' => 'text',
-      'default' => 'Default Text',
-    ) );
+        $cmb->add_field( array(
+          'name' => __( 'Test Text', 'basepress' ),
+          'desc' => __( 'field description (optional)', 'basepress' ),
+          'id'   => 'test_text',
+          'type' => 'text',
+          'default' => 'Default Text',
+        ) );
 
-    $cmb->add_field( array(
-      'name'    => __( 'Test Color Picker', 'myprefix' ),
-      'desc'    => __( 'field description (optional)', 'myprefix' ),
-      'id'      => 'test_colorpicker',
-      'type'    => 'colorpicker',
-      'default' => '#bada55',
-    ) );
+        $cmb->add_field( array(
+          'name'    => __( 'Test Color Picker', 'basepress' ),
+          'desc'    => __( 'field description (optional)', 'basepress' ),
+          'id'      => 'test_colorpicker',
+          'type'    => 'colorpicker',
+          'default' => '#bada55',
+        ) );
 
   }
 
@@ -149,17 +149,17 @@ class myprefix_Admin {
 }
 
 // Get it started
-$GLOBALS['myprefix_Admin'] = new myprefix_Admin();
-$GLOBALS['myprefix_Admin']->hooks();
+$GLOBALS['basepress_Admin'] = new basepress_Admin();
+$GLOBALS['basepress_Admin']->hooks();
 
 /**
- * Helper function to get/return the myprefix_Admin object
+ * Helper function to get/return the basepress_Admin object
  * @since  0.1.0
- * @return myprefix_Admin object
+ * @return basepress_Admin object
  */
-function myprefix_Admin() {
-  global $myprefix_Admin;
-  return $myprefix_Admin;
+function basepress_Admin() {
+  global $basepress_Admin;
+  return $basepress_Admin;
 }
 
 /**
@@ -168,7 +168,7 @@ function myprefix_Admin() {
  * @param  string  $key Options array key
  * @return mixed        Option value
  */
-function myprefix_get_option( $key = '' ) {
-  global $myprefix_Admin;
-  return cmb2_get_option( $myprefix_Admin->key, $key );
+function basepress_get_option( $key = '' ) {
+  global $basepress_Admin;
+  return cmb2_get_option( $basepress_Admin->key, $key );
 }
