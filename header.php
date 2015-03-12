@@ -8,11 +8,13 @@ global $shortname;
 
 ?>
 
-<!DOCTYPE html>
-<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
-<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
-<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+    <!DOCTYPE html>
+    <!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+    <!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+    <!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+    <!--[if IE 9 ]><html class="ie ie9" lang="en"> <![endif]-->
+    <!--[if (gte IE 10)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+
     <head>
 
         <!-- Meta
@@ -20,14 +22,7 @@ global $shortname;
         <meta charset="<?php echo get_option('blog_charset'); ?>">
 
         <title>
-        <?php
-                if ( is_single() ) { bloginfo('name'); print ' | '; single_post_title(); }
-                elseif ( is_home() || is_front_page() ) { bloginfo('name'); print ' | '; bloginfo('description'); get_page_number(); }
-                elseif ( is_page() ) { bloginfo('name'); print ' | '; single_post_title(''); }
-                elseif ( is_search() ) { bloginfo('name'); print ' | Search results for ' . wp_specialchars($s); get_page_number(); }
-                elseif ( is_404() ) { bloginfo('name'); print ' | Not Found'; }
-                else { bloginfo('name'); print ' | '; wp_title('|'); get_page_number(); }
-        ?>
+
         </title>
 
         <meta name="description" content="<?php bloginfo('description'); ?>">
@@ -68,7 +63,6 @@ global $shortname;
                     
                     <div class="site-branding">
                         <h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-                        <h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
                     </div>
 
                     <nav id="site-navigation" class="site-navigation main-navigation" role="navigation">

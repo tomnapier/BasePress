@@ -3,18 +3,7 @@
 
 /* Apply styles to the visual editor
 ========================================================= */
-add_filter('mce_css', 'tuts_mcekit_editor_style');
-function tuts_mcekit_editor_style($url) {
 
-    if ( !empty($url) )
-        $url .= ',';
-
-    // Retrieves the plugin directory URL
-    // Change the path here if using different directories
-    $url .= trailingslashit( get_bloginfo('template_url') ) . 'style.css';
-
-    return $url;
-}
 
 /* Add "Styles" drop-down
 ========================================================= */

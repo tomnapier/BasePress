@@ -38,7 +38,6 @@ global $shortname;
                 <li><p>&copy; <?php echo the_date('Y'); ?> <a href="<?php bloginfo('url');?>" rel="index"><?php bloginfo('name'); ?></a></p></li>
                  <?php if( get_option( 'iw_privacy' ) ) { ?><li><a href="<?php echo get_permalink( get_option( $shortname . '_privacy' ) ); ?>"><?php echo get_the_title( get_option( $shortname . '_privacy'  ) ); ?></a></li><?php } ?>
                  <?php if( get_option( 'iw_cookie' ) ) { ?><li><a href="<?php echo get_permalink( get_option( $shortname . '_cookie' ) ); ?>"><?php echo get_the_title( get_option( $shortname . '_cookie'  ) ); ?></a></li><?php } ?>
-                <li><p><?php _e('Design by <a href="http://www.inkandwater.co.uk/" target="_blank" rel="bookmark">Ink &amp; Water</a>');?></p></li>
             </ul>
         </div><!-- .site-copyright -->
 

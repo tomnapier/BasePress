@@ -1,6 +1,0 @@
-#adminmenu #toplevel_page_options .menu-icon-generic div.wp-menu-image:before      { content: "\f116"; }
-
-#adminmenu #menu-posts-location .menu-icon-post div.wp-menu-image:before           { content: "\f231"; }
-#adminmenu #menu-posts-slide .menu-icon-post div.wp-menu-image:before              { content: "\f181"; }
-#adminmenu #menu-posts-game .menu-icon-post div.wp-menu-image:before               { content: "\f155"; }
-#adminmenu #toplevel_page_wpcf7 .menu-top div.wp-menu-image:before                 { content: "\f175"; }

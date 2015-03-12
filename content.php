@@ -13,10 +13,7 @@
 
         <div class="entry-thumbnail">
             <a href="<?php the_permalink(); ?>" rel="bookmark">
-                <?php if( has_post_thumbnail() ) 
-                    { the_post_thumbnail('square') ;} 
-                    else 
-                    { new_post_thumbnail('square') ;}?>
+                <?php the_post_thumbnail('square'); ?>
             </a>
         </div>
 
